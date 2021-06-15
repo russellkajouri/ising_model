@@ -39,6 +39,6 @@ class Medium:
 			totalE, orderP = self.MonteCarloSteps()
 			ave_totalE += totalE
 			ave_orderP += orderP
-			print("%-4.d, %-8.4f. %-4.2f"%(s, totalE, orderP))
+			print("%-4.d %-5.3f %-5.3f"%(s, totalE, orderP))
 		return (ave_totalE / self.Steps) ,(ave_orderP / self.Steps)
 	# --------------------------------------------------------

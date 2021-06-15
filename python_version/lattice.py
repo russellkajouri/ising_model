@@ -17,7 +17,7 @@ class Lattice:
 		else:
 			self.stochastic_localization1D()
 			pass
-		self.display()
+		#self.display()
 		pass
 	# --------------------------------------------------------
 	def stochastic_localization1D(self):
@@ -73,4 +73,4 @@ class Lattice:
 		if temp == 0:
 			return False
 		else:
-			return True if np.random.random() > np.exp(-deltaE / temp) else False
+			return True if np.random.random() < np.exp(-deltaE / temp) else False
