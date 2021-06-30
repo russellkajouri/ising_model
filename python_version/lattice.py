@@ -74,3 +74,7 @@ class Lattice:
 			return False
 		else:
 			return True if np.random.random() < np.exp(-deltaE / temp) else False
+	# --------------------------------------------------------
+	def GetsBackSpin(self, i):
+		return self.L[i].direction
+	# --------------------------------------------------------

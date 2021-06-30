@@ -32,13 +32,24 @@ class Medium:
 			self.SingleMonteCarloStep()
 		return self.lattice.energy(), self.lattice.polarization()
 	# --------------------------------------------------------
-	def Evolution(self):
+	def Evolution(self, display=False):
 		ave_totalE = 0
 		ave_orderP = 0
 		for s in range(self.Steps):
 			totalE, orderP = self.MonteCarloSteps()
 			ave_totalE += totalE
 			ave_orderP += orderP
-			print("%-4.d %-5.3f %-5.3f"%(s, totalE, orderP))
+			if display:
+				print("%-4.d %-5.3f %-5.3f"%(s, totalE, orderP))
 		return (ave_totalE / self.Steps) ,(ave_orderP / self.Steps)
 	# --------------------------------------------------------
+	def WriteTheLattice(self, name="lattice.data", wformat="txt"):
+		if wformat == "txt":
+			out = open(name, 'w')
+			out.write("{}".format(self.latticeSize))
+			for i in range(self.latticeSize):
+				out.write(",{}".format(self.lattice.GetsBackSpin(i)))
+				pass
+			out.close()
+			print("### The lattice has been dumped by name: ", name)
+		pass
