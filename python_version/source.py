@@ -4,16 +4,21 @@
 #
 # #####
 #
-from medium import Medium
+from simulator import Simulator
 def main():
-	dT = 0.100
-	for T in range(1,2):
-		print("temp: {:6.4f}".format(T*dT))
-		medium = Medium(num = 512, dim = 1, initial_config = "stochastic",\
-			initial_direction = 1, J = 1, steps = 70000, temp = T*dT)
-		aveE , aveP = medium.Evolution(display=False)
-		print("%-5.3f %-5.3f %-5.3f" %(T*dT,aveE, aveP))
-		medium.WriteTheLattice()
-		print("#", "-"*70)
+
+	system = Simulator(num = 16, dim = 2, initial_config = "stochastic", initial_direction = 1, J = 1)
+	system.DumpLattice(name= "la.dat", lag = 100, mode = "w" )
+
+	dT = 0.10
+	T = 0.0
+	totalT = 2.0
+	while T < totalT:
+		system.SetTemperature( T )
+		aveE , aveP = system.Run( Nsteps = 70000, lag =100 )
+		print("%-5.3f %-5.3f %-5.3f" %(T,aveE, aveP))
+		T += dT
 		pass
+	print("#", "-"*70)
+
 main()
