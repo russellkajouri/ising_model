@@ -51,7 +51,7 @@ class Lattice:
 		ene = 0
 		for l in range(self.number):
 			ene += self.energyOf(l)
-		return ene * 0.5 ''' multiply to 0.5 for avoiding double counting '''
+		return ene * 0.500 if self.dim == 1 else ene * 0.2500
 	# --------------------------------------------------------
 	def period(self, n):
 		if n == self.number:

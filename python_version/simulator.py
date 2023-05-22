@@ -60,13 +60,19 @@ class Simulator:
 			pass
 
 		self.Steps = Nsteps
-		ave_totalE = 0
-		ave_orderP = 0
+		ave_totalE = 0.0
+		ave_orderP = 0.0
+
+		totalE2 = 0.0
+		orderP2 = 0.0
 
 		for s in range(self.Steps):
 			totalE, orderP = self.MonteCarloSteps()
 			ave_totalE += totalE
 			ave_orderP += orderP
+
+			totalE2 += totalE * totalE
+			orderP2 += orderP * orderP
 
 			if s % lag == 0:
 				print(s, "/", Nsteps, sep="", end="\r")
@@ -76,7 +82,7 @@ class Simulator:
 				pass
 			pass
 
-		return (ave_totalE / self.Steps) ,(ave_orderP / self.Steps)
+		return (ave_totalE / self.Steps) ,(ave_orderP / self.Steps), (totalE2 / self.Steps), (orderP2 / self.Steps)
 	# --------------------------------------------------------
 	def DumpLattice(self, name, lag, mode = 'w'):
 		self.out = open(name, mode = mode)
