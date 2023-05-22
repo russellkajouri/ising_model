@@ -7,8 +7,8 @@
 from simulator import Simulator
 def main():
 
-	system = Simulator(num = 16, dim = 2, initial_config = "stochastic", initial_direction = 1, J = 1)
-	system.DumpLattice(name= "la.dat", lag = 100, mode = "w" )
+	system = Simulator(num = 8, dim = 2, initial_config = "stochastic", initial_direction = 1, J = 1)
+	system.DumpLattice(name= "lattice.dat", lag = 100, mode = "w" )
 
 	dT = 0.10
 	T = 0.0
